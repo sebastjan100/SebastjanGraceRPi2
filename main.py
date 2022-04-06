@@ -95,7 +95,17 @@ try:
     if DEBUG:
         print("Set led strip to WHITE")
     for i in range(strip_len):
-        pixels[i] = (255, 255, 255)
+        r = random.randint(0,255)
+        g = random.randint(0,255)
+        b = random.randint(0,255)
+        k = random.randint(1,3)
+        if k == 1:
+            r = 0
+        if k == 2:
+               g = 0
+        if k == 3:
+            b = 0
+        pixels[i] = (r,g,b)
     
     while True:
         #Napišemo prazno povešino za izpis na ekran
@@ -167,16 +177,7 @@ except KeyboardInterrupt:
 
     #Ugasnemo LED strip
     for i in range(strip_len):
-            r = random.randint(0,255)
-            g = random.randint(0,255)
-            b = random.randint(0,255)
-            k = random.randint(1,3)
-            if k == 1:
-                r = 0
-            if k == 2:
-                g = 0
-            if k == 3:
-                b = 0
-            pixels[i] = (r, g, b)
+            
+            pixels[i] = (0, 0, 0)
     #Pobrišemo nastavitve na GPIO pinih
     GPIO.cleanup()

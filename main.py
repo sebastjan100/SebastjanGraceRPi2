@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
-import time                                     
+import time          
+import random
 import uz as UZ #ultasonic senzor knjiznica
 import dht as DHT #DHT sen knjiznica
 import Adafruit_SSD1306 #display knjiznica
@@ -166,6 +167,16 @@ except KeyboardInterrupt:
 
     #Ugasnemo LED strip
     for i in range(strip_len):
-            pixels[i] = (0, 0, 0)
+            r = random.randint(0,255)
+            g = random.randint(0,255)
+            b = random.randint(0,255)
+            k = random.randint(1,3)
+            if k == 1:
+                r = 0
+            if k == 2:
+                g = 0
+            if k == 3:
+                b = 0
+            pixels[i] = (r, g, b)
     #Pobrišemo nastavitve na GPIO pinih
     GPIO.cleanup()

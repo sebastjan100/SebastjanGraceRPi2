@@ -21,7 +21,7 @@ pixels = neopixel.NeoPixel(board.D21, strip_len)
 GPIO.setmode(GPIO.BCM)
 
 ##### VNESI SVOJE PODATKE #####
-url = "https://gracewebapp-sebastjantekavc.online404.repl.co/"
+url = "https://gracewebapp-sebastjantekavc.online404.repl.co"
 apikey = "sebastjan"
 ###############################
 

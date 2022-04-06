@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
-import time          
-import random
+import time
 import uz as UZ #ultasonic senzor knjiznica
 import dht as DHT #DHT sen knjiznica
 import Adafruit_SSD1306 #display knjiznica

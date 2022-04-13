@@ -94,7 +94,7 @@ try:
     if DEBUG:
         print("Set led strip to WHITE")
     for i in range(strip_len):
-        pixels[i] = (255,0,255)
+        pixels[i] = (r,g,b)
     
     while True:
         #Napišemo prazno povešino za izpis na ekran
@@ -122,11 +122,17 @@ try:
             draw.text((x, top),  "Last move: " + str(cas[3])+":"+str(cas[4])+":"+str(cas[5]) ,  font=font, fill=255)
                 
         else:
+            #ledtrak
+            barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+            r = int(barva[1:3], 16)
+            g = int(barva[3:5], 16)
+            b = int(barva[5:7], 16)
+            print(r,g,b)
             #Več kot 10s ni bilo premika
             if DEBUG:
                 print("set LED strip to WHITE")
             for i in range(strip_len):
-                pixels[i] = (255, 255, 255)
+                pixels[i] = (r,g,b)
             #Izpišemo čas zadnjega premika
             cas = time.localtime( time_of_last_move )
             draw.text((x, top),  "Last move: " + str(cas[3])+":"+str(cas[4])+":"+str(cas[5]) ,  font=font, fill=255)
@@ -150,12 +156,7 @@ try:
         draw.text((x, top+24),  "ENC:" + str(counter) + ", BUTTON:" + str(click) ,  font=font, fill=255)  
 
         
-        #ledtrak
-        barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
-        r = int(barva[1:3], 16)
-        g = int(barva[3:5], 16)
-        b = int(barva[5:7], 16)
-        print(r,g,b)
+        
         
         #Pripravljen izpis prikažemo na zaslonu
         disp.image(image)

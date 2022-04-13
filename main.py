@@ -94,7 +94,7 @@ try:
     if DEBUG:
         print("Set led strip to WHITE")
     for i in range(strip_len):
-        pixels[i] = (r,g,b)
+        pixels[i] = (255,0,255)
     
     while True:
         #Napišemo prazno povešino za izpis na ekran

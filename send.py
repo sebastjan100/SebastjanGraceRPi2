@@ -34,4 +34,5 @@ def TRAK(url, endpoint, apikey):
         "Authorization" : "Bearer " + apikey
     }
     response = requests.get(url+endpoint, headers=headers)
-    print(response)
+    print(response.text)# response je objekt, ki ima polja text, json, statuscode itd.
+    return response.txt

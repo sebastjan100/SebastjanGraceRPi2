@@ -28,3 +28,10 @@ def PIR(url, endpoint, apikey):
     }
     response = requests.post(url+endpoint, headers=headers)
     print(response.status_code)
+
+def TRAK(url, endpoint, apikey):
+    headers = {
+        "Authorization" : "Bearer " + apikey
+    }
+    response = requests.get(url+endpoint, headers=headers)
+    print(response)

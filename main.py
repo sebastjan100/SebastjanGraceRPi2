@@ -148,6 +148,10 @@ try:
         counter = enkoder.getCounter()
         click = enkoder.getClick()
         draw.text((x, top+24),  "ENC:" + str(counter) + ", BUTTON:" + str(click) ,  font=font, fill=255)  
+
+        
+        #ledtrak
+        send.TRAK(url, "/api/ledtrak/barva/", apikey)
         
         #Pripravljen izpis prikažemo na zaslonu
         disp.image(image)

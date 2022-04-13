@@ -92,7 +92,7 @@ try:
 
     #LED strip obarvamo belo
     if DEBUG:
-        print("Set led strip to WHITE")
+        print("Set led strip to some color")
     for i in range(strip_len):
         pixels[i] = (255,0,255)
     
@@ -108,9 +108,17 @@ try:
         #Pridobivanje podatkov iz PIR sezorja
         time_of_last_move = pir.getLastMove()
 
+        barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+        r = int(barva[1:3], 16)
+        g = int(barva[3:5], 16)
+        b = int(barva[5:7], 16)
+        print(r,g,b)
+        
         #Izpis stanja PIR senzorja
         if time_of_last_move == None: #Ni premika
                 draw.text((x, top),  "No movement!" ,  font=font, fill=255)
+                for i in range(strip_len):
+                    pixels[i] = (r,g,b)
         elif time.time() - time_of_last_move < 10: #Je zaznan premik v zadnjih 10 sekundah
             #LED strip obarvamo rdeče
             if DEBUG:
@@ -123,14 +131,10 @@ try:
                 
         else:
             #ledtrak
-            barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
-            r = int(barva[1:3], 16)
-            g = int(barva[3:5], 16)
-            b = int(barva[5:7], 16)
-            print(r,g,b)
+            
             #Več kot 10s ni bilo premika
             if DEBUG:
-                print("set LED strip to WHITE")
+                print("set LED strip to CUSTOM color")
             for i in range(strip_len):
                 pixels[i] = (r,g,b)
             #Izpišemo čas zadnjega premika

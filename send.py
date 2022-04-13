@@ -35,4 +35,4 @@ def TRAK(url, endpoint, apikey):
     }
     response = requests.get(url+endpoint, headers=headers)
     print(response.text)# response je objekt, ki ima polja text, json, statuscode itd.
-    return response.txt
+    return response.text

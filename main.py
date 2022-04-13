@@ -151,7 +151,11 @@ try:
 
         
         #ledtrak
-        send.TRAK(url, "/api/ledtrak/barva/", apikey)
+        barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+        r = int(barva[1:3], 16)
+        g = int(barva[3:5], 16)
+        b = int(barva[5:7], 16)
+        print(r,g,b)
         
         #Pripravljen izpis prikažemo na zaslonu
         disp.image(image)

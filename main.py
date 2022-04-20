@@ -147,7 +147,7 @@ try:
         if DEBUG:
             print("Izmerjena razdalja je", razd, "cm.")
         draw.text((x, top+8),  "Razdalja:" + str(round(razd,2)) + " cm", font=font, fill=255)
-        send.UZ(url, "/api/uz/", round(razd,2), apikey)
+        send.UZ(url, "/api/dist/", round(razd,2), apikey)
         
         #Pridobimo in izpišemo podatke iz DHT senzorja
         data = DHT.get_humidity() #data[0] = hum; data[1]= temp

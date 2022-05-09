@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import random
 import uz as UZ #ultasonic senzor knjiznica
 import dht as DHT #DHT sen knjiznica
 import Adafruit_SSD1306 #display knjiznica
@@ -107,13 +108,17 @@ try:
 
         #Pridobivanje podatkov iz PIR sezorja
         time_of_last_move = pir.getLastMove()
-
-        barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
-        r = int(barva[1:3], 16)
-        g = int(barva[3:5], 16)
-        b = int(barva[5:7], 16)
-        print(r,g,b)
-        
+        if enkoder.paused = False:
+            barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+            r = int(barva[1:3], 16)
+            g = int(barva[3:5], 16)
+            b = int(barva[5:7], 16)
+            print(r,g,b)
+        elif enkoder.paused = True:
+            r = random.randint(0,255)
+            g = random.randint(0,255)
+            b= random.randint(0,255)
+            print(r,g,b)
         #Izpis stanja PIR senzorja
         if time_of_last_move == None: #Ni premika
                 draw.text((x, top),  "No movement!" ,  font=font, fill=255)

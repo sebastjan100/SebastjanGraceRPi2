@@ -145,20 +145,21 @@ try:
 
         #Pridobivanje podatkov iz PIR sezorja
         time_of_last_move = pir.getLastMove()
-        if enkoder.paused == False:
-            barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
-            r = int(barva[1:3], 16)
-            g = int(barva[3:5], 16)
-            b = int(barva[5:7], 16)
-            print(r,g,b)
-        elif enkoder.paused == True:
-            rainbow_cycle(0.001)
-            print(r,g,b)
         #Izpis stanja PIR senzorja
         if time_of_last_move == None: #Ni premika
                 draw.text((x, top),  "No movement!" ,  font=font, fill=255)
                 for i in range(strip_len):
-                    pixels[i] = (r,g,b)
+                    if enkoder.paused == False:
+                        barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+                        r = int(barva[1:3], 16)
+                        g = int(barva[3:5], 16)
+                        b = int(barva[5:7], 16)
+                        print(r,g,b)
+                        pixels[i] = (r,g,b)
+                    elif enkoder.paused == True:
+                        rainbow_cycle(0.001)
+                        print(r,g,b)
+
         elif time.time() - time_of_last_move < 10: #Je zaznan premik v zadnjih 10 sekundah
             #LED strip obarvamo rdeče
             if DEBUG:

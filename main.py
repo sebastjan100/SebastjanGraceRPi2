@@ -150,15 +150,14 @@ try:
                 draw.text((x, top),  "No movement!" ,  font=font, fill=255)
                 if enkoder.paused == False:
                     barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
-                    r = int(barva[1:3], 16)
-                    g = int(barva[3:5], 16)
-                    b = int(barva[5:7], 16)
-                    print(r,g,b)
+                    r1 = int(barva[1:3], 16)
+                    g1 = int(barva[3:5], 16)
+                    b1 = int(barva[5:7], 16)
+                    print(r1,g1,b1)
                     for i in range(strip_len):
-                        pixels[i] = (r,g,b)
+                        pixels[i] = (r1,g1,b1)
                 elif enkoder.paused == True:
                     rainbow_cycle(0.001)
-                    print(r,g,b)
 
         elif time.time() - time_of_last_move < 10: #Je zaznan premik v zadnjih 10 sekundah
             #LED strip obarvamo rdeče

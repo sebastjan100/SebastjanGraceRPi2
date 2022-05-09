@@ -174,9 +174,17 @@ try:
             
             #Več kot 10s ni bilo premika
             if DEBUG:
-                print("set LED strip to CUSTOM color")
-            for i in range(strip_len):
-                pixels[i] = (r,g,b)
+                print("set LED strip to color that was before")
+            if enkoder.paused == False:
+                barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+                r1 = int(barva[1:3], 16)
+                g1 = int(barva[3:5], 16)
+                b1 = int(barva[5:7], 16)
+                print(r1,g1,b1)
+                for i in range(strip_len):
+                    pixels[i] = (r1,g1,b1)
+            elif enkoder.paused == True:
+                rainbow_cycle(0.001)
             #Izpišemo čas zadnjega premika
             cas = time.localtime( time_of_last_move )
             draw.text((x, top),  "Last move: " + str(cas[3])+":"+str(cas[4])+":"+str(cas[5]) ,  font=font, fill=255)

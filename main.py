@@ -219,6 +219,9 @@ try:
 
         #muska
         currentLink, playing = music.predvajaj(currentLink, playing)
+        musicTitle = music.musicTitle
+        draw.text((x, top+32),  "Music:" + str(musicTitle) ,  font=font, fill=255)  
+        
         
         
         #Pripravljen izpis prikažemo na zaslonu

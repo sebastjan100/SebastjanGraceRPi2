@@ -19,6 +19,7 @@ def predvajaj(currentLink, playing):
     # Ce dobimo nov komad, ga nalozimo in zacnemo predvajati
     if data['musicLink'] != currentLink:
         currentLink = data["musicLink"]
+        musicTitle = data["musicTitle"]
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([currentLink])
 
@@ -39,7 +40,7 @@ def predvajaj(currentLink, playing):
         playing = True
         print("playing")
 
-    return currentLink, playing
+    return currentLink, playing, musicTitle
 
 
     

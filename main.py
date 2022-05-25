@@ -111,8 +111,8 @@ def rainbow_cycle(wait):
 
 
 #lokalne vrednosti za musko
-music.currentLink = ""
-music.playing = False
+currentLink = ""
+playing = False
 
 
 try: 

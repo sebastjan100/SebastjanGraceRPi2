@@ -15,11 +15,11 @@ ydl_opts = {
 
 def predvajaj(currentLink, playing):
     data = requests.get("https://gracewebapp-sebastjantekavc.online404.repl.co/api/music/").json()
+    musicTitle = data["musicTitle"]
 
     # Ce dobimo nov komad, ga nalozimo in zacnemo predvajati
     if data['musicLink'] != currentLink:
         currentLink = data["musicLink"]
-        musicTitle = data["musicTitle"]
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([currentLink])
 

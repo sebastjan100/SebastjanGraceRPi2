@@ -214,7 +214,7 @@ try:
         #Pridobimo in pzpišemo podatke iz enkoderja
         counter = enkoder.getCounter()
         click = enkoder.getClick()
-        draw.text((x, top+24),  "ENC:" + str(counter) + ", BUTTON:" + str(click) ,  font=font, fill=255)  
+        #draw.text((x, top+24),  "ENC:" + str(counter) + ", BUTTON:" + str(click) ,  font=font, fill=255)  
 
 
         #muska

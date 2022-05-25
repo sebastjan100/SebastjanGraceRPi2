@@ -26,17 +26,18 @@ def predvajaj(currentLink, playing):
         pygame.mixer.music.play()
 
         playing = True
-
+        print("download")
     # Ce na spletni strani ustavimo glasbo, na RPiju pa jo se vedno predvajamo
     if data['status'] != "playing" and playing:
         pygame.mixer.music.pause()
         playing = False
-
+        print("stop playing")
+        
     # Ce na spletni strani predvajamo glasbo, na RPiju pa je ne
     if data['status'] == "playing" and not playing:
         pygame.mixer.music.unpause()
         playing = True
-        
+        print("playing")
 
     return currentLink, playing
 

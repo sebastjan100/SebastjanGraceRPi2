@@ -166,13 +166,16 @@ try:
         #Pridobimo in pzpišemo podatke iz enkoderja
         counter = enkoder.getCounter()
         click = enkoder.getClick()
-        #draw.text((x, top+24),  "ENC:" + str(counter) + ", BUTTON:" + str(click) ,  font=font, fill=255)  
+         
 
 
         #muska
         
         currentLink, playing, musicTitle = music.predvajaj(currentLink, playing)
-        draw.text((x, top+24),  "Music:" + str(musicTitle) ,  font=font, fill=255)  
+        if enkoder.paused == True:
+            draw.text((x, top+24),  "Music:" + str(musicTitle) ,  font=font, fill=255)
+        else:
+            draw.text((x, top+24),  "ENC:" + str(counter) + ", BUTTON:" + str(click) ,  font=font, fill=255) 
         
         
         

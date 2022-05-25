@@ -218,8 +218,7 @@ try:
 
 
         #muska
-        currentLink, playing = music.predvajaj(currentLink, playing)
-        musicTitle = music.musicTitle
+        currentLink, playing, musicTitle = music.predvajaj(currentLink, playing, musicTitle)
         draw.text((x, top+32),  "Music:" + str(musicTitle) ,  font=font, fill=255)  
         
         

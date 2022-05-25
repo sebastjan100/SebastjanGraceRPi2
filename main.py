@@ -113,7 +113,7 @@ def rainbow_cycle(wait):
 #lokalne vrednosti za musko
 currentLink = ""
 playing = False
-
+musicTitle = ""
 
 try: 
     #Inicializiramo enkoder
@@ -218,8 +218,8 @@ try:
 
 
         #muska
-        currentLink, playing = music.predvajaj(currentLink, playing)
-        musicTitle = music.musicTitle
+        
+        currentLink, playing, musicTitle = music.predvajaj(currentLink, playing, musicTitle)
         draw.text((x, top+32),  "Music:" + str(musicTitle) ,  font=font, fill=255)  
         
         

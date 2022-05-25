@@ -74,41 +74,6 @@ sw = 27
 #Nastavimo spremenljivko PIR senzorja
 pir_pin = 13
 
-############################################# RGB def
-num_pixels = 5
-ORDER = neopixel.GRB
-
-def wheel(pos):
-    # Input a value 0 to 255 to get a color value.
-    # The colours are a transition r - g - b - back to r.
-    if pos < 0 or pos > 255:
-        r = g = b = 0
-    elif pos < 85:
-        r = int(pos * 3)
-        g = int(255 - pos * 3)
-        b = 0
-    elif pos < 170:
-        pos -= 85
-        r = int(255 - pos * 3)
-        g = 0
-        b = int(pos * 3)
-    else:
-        pos -= 170
-        r = 0
-        g = int(pos * 3)
-        b = int(255 - pos * 3)
-    return (r, g, b) if ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
-
-
-def rainbow_cycle(wait):
-    for j in range(255):
-        for i in range(num_pixels):
-            pixel_index = (i * 256 // num_pixels) + j
-            pixels[i] = wheel(pixel_index & 255)
-        pixels.show()
-        time.sleep(wait)
-
-
 
 #lokalne vrednosti za musko
 currentLink = ""
@@ -157,16 +122,13 @@ try:
         #Izpis stanja PIR senzorja
         if time_of_last_move == None: #Ni premika
                 draw.text((x, top),  "No movement!" ,  font=font, fill=255)
-                if enkoder.paused == False:
-                    barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
-                    r1 = int(barva[1:3], 16)
-                    g1 = int(barva[3:5], 16)
-                    b1 = int(barva[5:7], 16)
-                    print(r1,g1,b1)
-                    for i in range(strip_len):
-                        pixels[i] = (r1,g1,b1)
-                elif enkoder.paused == True:
-                    rainbow_cycle(0.001)
+                barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+                r = int(barva[1:3], 16)
+                g = int(barva[3:5], 16)
+                b = int(barva[5:7], 16)
+                print(r,g,b)
+                for i in range(strip_len):
+                    pixels[i] = (r,g,b)
 
         elif time.time() - time_of_last_move < 10: #Je zaznan premik v zadnjih 10 sekundah
             #LED strip obarvamo rdeče
@@ -184,16 +146,6 @@ try:
             #Več kot 10s ni bilo premika
             if DEBUG:
                 print("set LED strip to color that was before")
-            if enkoder.paused == False:
-                barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
-                r1 = int(barva[1:3], 16)
-                g1 = int(barva[3:5], 16)
-                b1 = int(barva[5:7], 16)
-                print(r1,g1,b1)
-                for i in range(strip_len):
-                    pixels[i] = (r1,g1,b1)
-            elif enkoder.paused == True:
-                rainbow_cycle(0.001)
             #Izpišemo čas zadnjega premika
             cas = time.localtime( time_of_last_move )
             draw.text((x, top),  "Last move: " + str(cas[3])+":"+str(cas[4])+":"+str(cas[5]) ,  font=font, fill=255)

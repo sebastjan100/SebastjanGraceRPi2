@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 import random
+import pygame
+import music
 import uz as UZ #ultasonic senzor knjiznica
 import dht as DHT #DHT sen knjiznica
 import Adafruit_SSD1306 #display knjiznica
@@ -108,6 +110,10 @@ def rainbow_cycle(wait):
 
 
 
+#lokalne vrednosti za musko
+music.currentLink = ""
+music.playing = False
+
 
 try: 
     #Inicializiramo enkoder
@@ -133,6 +139,9 @@ try:
         print("Set led strip to some color")
     for i in range(strip_len):
         pixels[i] = (120,0,120)
+
+    #pygame init
+    pygame.mixer.init()
     
     while True:
         #Napišemo prazno povešino za izpis na ekran
@@ -207,7 +216,9 @@ try:
         click = enkoder.getClick()
         draw.text((x, top+24),  "ENC:" + str(counter) + ", BUTTON:" + str(click) ,  font=font, fill=255)  
 
-        
+
+        #muska
+        currentLink, playing = music.predvajaj(currentLink, playing)
         
         
         #Pripravljen izpis prikažemo na zaslonu

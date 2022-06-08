@@ -139,6 +139,7 @@ try:
             cas = time.localtime( time_of_last_move )
             #Izpišemo čas zadnjega premika
             draw.text((x, top),  "Last move: " + str(cas[3])+":"+str(cas[4])+":"+str(cas[5]) ,  font=font, fill=255)
+            send.PIR(url, "/api/pir/, ", cas, apikey)
                 
         else:
             #ledtrak
@@ -149,6 +150,13 @@ try:
             #Izpišemo čas zadnjega premika
             cas = time.localtime( time_of_last_move )
             draw.text((x, top),  "Last move: " + str(cas[3])+":"+str(cas[4])+":"+str(cas[5]) ,  font=font, fill=255)
+            barva = send.TRAK(url, "/api/ledtrak/barva/", apikey)
+            r = int(barva[1:3], 16)
+            g = int(barva[3:5], 16)
+            b = int(barva[5:7], 16)
+            print(r,g,b)
+            for i in range(strip_len):
+                pixels[i] = (r,g,b)
         #Pridobimo in izpišemo podatke UZ senzorja
         if DEBUG:
             print("read UZ")

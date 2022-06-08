@@ -139,7 +139,7 @@ try:
             cas = time.localtime( time_of_last_move )
             #Izpišemo čas zadnjega premika
             draw.text((x, top),  "Last move: " + str(cas[3])+":"+str(cas[4])+":"+str(cas[5]) ,  font=font, fill=255)
-            send.PIR(url, "/api/pir/, ", apikey)
+            send.PIR(url, "/api/pir/, ", cas, apikey)
                 
         else:
             #ledtrak

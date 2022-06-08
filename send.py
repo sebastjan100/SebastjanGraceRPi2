@@ -22,11 +22,12 @@ def DHT(url, endpoint, data, apikey):
     response = requests.post(url+endpoint, json=data, headers=headers)
     print(response.status_code)
 
-def PIR(url, endpoint, apikey):
+def PIR(url, endpoint, cas, apikey):
     headers = {
         "Authorization" : "Bearer " + apikey
     }
     response = requests.post(url+endpoint, headers=headers)
+    print(cas)
     print(response.status_code)
 
 def TRAK(url, endpoint, apikey):
